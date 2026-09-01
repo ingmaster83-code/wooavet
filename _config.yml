@@ -1,0 +1,31 @@
+title: 우아동물병원 - 전국 동물병원 찾기
+description: >-
+  전국 9,445곳의 동물병원 위치와 연락처를 지역별로 검색하세요.
+  영업 중인 병원만 골라 빠르게 찾을 수 있습니다.
+url: "https://wooavet.wooahouse.com"
+baseurl: ""
+lang: ko
+timezone: Asia/Seoul
+author: WooaHouse
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - scripts/
+  - "*.py"
+  - "*.log"
+  - "*.txt"
+  - README.md
+  - .gitignore
+  - vendor/
+  - _rawdata/
+  - data/

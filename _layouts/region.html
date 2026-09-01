@@ -1,0 +1,90 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <span>{{ page.do_name }}</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🐾 {{ page.title_h1 }}</h1>
+    <p>{{ page.subtitle }}</p>
+  </div>
+
+  <!-- 광고 -->
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  <p id="itemCount" style="font-size:.87rem;color:#6B7280;margin-bottom:16px;"></p>
+
+  <!-- 시군구/이름 검색 -->
+  <div style="margin-bottom:16px;">
+    <input type="text" id="sgguFilter" class="search-input" style="border:1px solid #E5E7EB;" placeholder="시군구 또는 병원명으로 이 지역 안에서 다시 찾기...">
+  </div>
+
+  <div class="camp-grid" id="itemGrid">
+    <p style="color:#6B7280;">로딩 중...</p>
+  </div>
+
+  <!-- 안내 텍스트 -->
+  <div style="margin-top:40px;background:#F9FAFB;border-radius:14px;padding:24px 28px;">
+    <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:12px;">{{ page.do_name }} 동물병원 안내</h2>
+    <p style="color:#374151;line-height:1.8;font-size:.9375rem;">
+      {{ page.do_name }}의 동물병원 위치와 연락처를 확인할 수 있습니다.
+      모든 정보는 지방자치단체가 관리하는 동물병원 인허가 공공데이터를 기반으로 하며, 영업 중인 병원만 표시합니다.
+    </p>
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>
+
+<script>
+const DO_NAME = {{ page.do_name | jsonify }};
+let allItems = [];
+
+(async () => {
+  const resp = await fetch('/search_index.json');
+  const all  = await resp.json();
+  allItems = all.filter(f => f.doShort === DO_NAME);
+  document.getElementById('itemCount').textContent = `총 ${allItems.length}곳`;
+  renderItems(allItems.slice(0, 200));
+})();
+
+function itemCard(f) {
+  return `<a class="camp-card" href="/vet/${f.slug}/">
+    <div class="camp-card-img-placeholder">🐾</div>
+    <div class="camp-card-body">
+      <div class="camp-card-name">${f.n}</div>
+      <div class="camp-card-loc">📍 ${f.sigungu || ''}</div>
+    </div>
+  </a>`;
+}
+
+function applyFilters() {
+  let filtered = allItems;
+  const q = document.getElementById('sgguFilter').value.trim().toLowerCase();
+  if (q) {
+    filtered = filtered.filter(f => (f.sigungu||'').toLowerCase().includes(q) || (f.n||'').toLowerCase().includes(q));
+  }
+  document.getElementById('itemCount').textContent = `총 ${filtered.length}곳${filtered.length > 200 ? ' (상위 200곳 표시, 검색으로 좁혀보세요)' : ''}`;
+  renderItems(filtered.slice(0, 200));
+}
+
+document.getElementById('sgguFilter').addEventListener('input', applyFilters);
+
+function renderItems(items) {
+  const grid = document.getElementById('itemGrid');
+  if (items.length === 0) {
+    grid.innerHTML = '<p style="color:#6B7280;grid-column:1/-1;">해당 조건의 병원이 없습니다.</p>';
+    return;
+  }
+  grid.innerHTML = items.map(itemCard).join('');
+}
+</script>

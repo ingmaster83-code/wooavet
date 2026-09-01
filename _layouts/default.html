@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | 우아동물병원{% else %}우아동물병원 - 전국 동물병원 찾기{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+  {% if page.layout == 'vet' %}
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ page.title }} | 우아동물병원">
+  <meta property="og:description" content="{{ page.description }}">
+  {% else %}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} | 우아동물병원{% else %}우아동물병원 - 전국 동물병원 찾기{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  {% endif %}
+  <meta property="og:image" content="{{ '/assets/og-image.png' | absolute_url }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:site_name" content="우아동물병원">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZGENFSXWC"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9ZGENFSXWC');</script>
+
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6464921081676309" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="{{ '/' | relative_url }}" class="site-logo">
+      <span class="logo-icon">🐾</span>
+      <span class="logo-text">우아동물병원</span>
+    </a>
+    <nav class="header-nav">
+      <a href="{{ '/region/' | relative_url }}">지역별</a>
+      <a href="{{ '/search/' | relative_url }}">검색</a>
+      <a href="https://wooahouse.com">WooaHouse →</a>
+    </nav>
+  </div>
+</header>
+
+<script src="{{ '/assets/js/wooa-sites-bar.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/ad-dev-placeholder.js' | relative_url }}"></script>
+
+{% unless page.layout == 'vet' or page.layout == 'region' or page.url == '/' %}
+<div class="top-ad-bar">
+  {% include ad.html %}
+</div>
+{% endunless %}
+
+<main class="site-main">
+  {{ content }}
+</main>
+<script src="{{ '/assets/js/wooa-sidebar.js' | relative_url }}"></script>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-disclaimer">
+      본 정보는 지방자치단체 동물병원 인허가 공공데이터를 기반으로 합니다(수시 갱신).<br>
+      실제 운영 여부·진료과목은 방문 전 병원에 직접 확인하세요.
+    </p>
+    <p class="footer-links">
+      <a href="https://wooahouse.com">WooaHouse</a> ·
+      <a href="https://wooapet.wooahouse.com">wooapet</a> ·
+      <a href="{{ '/privacy/' | relative_url }}">개인정보처리방침</a>
+    </p>
+    <p class="copyright">&copy; 2026 우아동물병원 · WooaHouse. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
