@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wooafarm.wooahouse.com/sitemap.xml
+Sitemap: https://wooavet.wooahouse.com/sitemap.xml
