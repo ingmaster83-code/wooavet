@@ -463,3 +463,8 @@ img { max-width: 100%; height: auto; }
 .hb-box{margin-top:32px;background:#F9FAFB;border-radius:14px;padding:22px 26px}
 .hb-box h2{font-size:1.05rem;font-weight:700;margin-bottom:10px}
 .hb-box p{color:#374151;line-height:1.8;font-size:.92rem}
+
+/* 사이드바 래퍼 안의 본문 블록은 열 너비에 맞춘다 */
+.page-with-sidebar > .side-main { min-width: 0; }
+.page-with-sidebar > .side-main > * { max-width: none; margin-left: 0; margin-right: 0; }
+.page-with-sidebar > .side-main > .section { padding-left: 0; padding-right: 0; }
