@@ -37,8 +37,8 @@ module Jekyll
     CAP = 200
 
     def generate(site)
-      path = File.join(site.source, '_rawdata', 'hub_items.json')
-      return unless File.exist?(path)
+      path = ['_rawdata', '_data_src'].map { |d| File.join(site.source, d, 'hub_items.json') }.find { |f| File.exist?(f) }
+      return unless path
       items = JSON.parse(File.read(path, encoding: 'utf-8'))
       return if items.empty?
 
