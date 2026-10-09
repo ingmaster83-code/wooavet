@@ -40,6 +40,7 @@ layout: default
   {% if page.hub %}
   <div class="hb-chips" style="margin:14px 0;">
     {% if page.hub.dong != "기타" %}<a class="hb-chip" href="/region/{{ page.hub.do | uri_escape }}/{{ page.hub.sgSlug | uri_escape }}/{{ page.hub.dong | uri_escape }}/">📍 {{ page.hub.dongLabel }} 동물병원 모아보기</a>{% endif %}
+    {% if page.hub.dong != "기타" %}<a class="hb-chip" href="https://wooatown.wooahouse.com/동네/{{ page.hub.do | uri_escape }}/{{ page.hub.sgSlug | uri_escape }}/{{ page.hub.dong | uri_escape }}/">🏘️ {{ page.hub.dongLabel }} 전체 생활정보 (우아동네)</a>{% endif %}
     <a class="hb-chip" href="/region/{{ page.hub.do | uri_escape }}/{{ page.hub.sgSlug | uri_escape }}/">{{ page.hub.sgLabel }} 동물병원</a>
   </div>
   {% endif %}
