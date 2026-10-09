@@ -440,3 +440,26 @@ img { max-width: 100%; height: auto; }
   background: #F1F5F9; border: 1px dashed #CBD5E1; border-radius: 6px;
   color: #94A3B8; font-size: .82rem; padding: 14px; text-align: center;
 }
+
+/* ===== 동네 허브(hb-) ===== */
+.hb-sum{color:#374151;line-height:1.85;font-size:.95rem;margin:4px 0 16px}
+.hb-chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.hb-chip{display:inline-block;padding:6px 12px;border:1px solid #E5E7EB;border-radius:999px;background:#fff;color:#111827;text-decoration:none;font-size:.85rem}
+.hb-chip:hover{border-color:var(--primary);color:var(--primary)}
+.hb-chip em{font-style:normal;color:#9CA3AF;font-size:.78rem;margin-left:4px}
+.hb-list{list-style:none;margin:0 0 8px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:8px}
+.hb-list li a{display:block;padding:10px 12px;border:1px solid #E5E7EB;border-radius:10px;color:#111827;text-decoration:none;background:#fff}
+.hb-list li a:hover{border-color:var(--primary)}
+.hb-list b{display:block;font-size:.92rem;font-weight:700}
+.hb-list small{display:block;color:#6B7280;font-size:.78rem;margin-top:2px}
+.hb-h2{font-size:1.05rem;font-weight:700;margin:26px 0 10px}
+.hb-nav{display:flex;justify-content:space-between;gap:10px;margin:24px 0 8px}
+.hb-nav a{flex:1;display:block;padding:12px 14px;border:1px solid #E5E7EB;border-radius:12px;background:#fff;color:#111827;text-decoration:none;font-weight:600;font-size:.9rem;text-align:center}
+.hb-nav a:hover{border-color:var(--primary)}
+.hb-faq{margin-top:28px}
+.hb-faq details{margin-bottom:8px;border:1px solid #E5E7EB;border-radius:10px;background:#fff;padding:2px 14px}
+.hb-faq summary{cursor:pointer;font-weight:600;padding:10px 0;font-size:.93rem}
+.hb-faq p{color:#374151;line-height:1.8;font-size:.9rem;padding-bottom:12px}
+.hb-box{margin-top:32px;background:#F9FAFB;border-radius:14px;padding:22px 26px}
+.hb-box h2{font-size:1.05rem;font-weight:700;margin-bottom:10px}
+.hb-box p{color:#374151;line-height:1.8;font-size:.92rem}

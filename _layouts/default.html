@@ -52,7 +52,7 @@
 <script src="{{ '/assets/js/wooa-sites-bar.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/ad-dev-placeholder.js' | relative_url }}"></script>
 
-{% unless page.layout == 'vet' or page.layout == 'region' or page.url == '/' %}
+{% unless page.layout == 'vet' or page.layout == 'region' or page.layout == 'hub_sg' or page.layout == 'hub_dong' or page.url == '/' %}
 <div class="top-ad-bar">
   {% include ad.html %}
 </div>

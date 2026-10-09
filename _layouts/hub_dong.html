@@ -1,0 +1,72 @@
+---
+layout: default
+---
+
+<div class="page-with-sidebar">
+<div class="region-page">
+
+  <nav class="breadcrumb" aria-label="위치">
+    <a href="/">홈</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort | uri_escape }}/">{{ page.doShort }}</a>
+    <span>›</span>
+    <a href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/">{{ page.sigungu }}</a>
+    <span>›</span>
+    <span>{{ page.dongLabel }}</span>
+  </nav>
+
+  <div class="region-page-header">
+    <h1>🐾 {{ page.sgLabel }} {{ page.dongLabel }} 동물병원</h1>
+    <p>{{ page.doShort }} {{ page.sigungu }} {{ page.dongLabel }} · 총 {{ page.totalCount }}곳</p>
+  </div>
+
+  <p class="hb-sum">{{ page.summary }}</p>
+
+  <div>
+    <a class="hb-chip" href="https://map.kakao.com/?q={{ page.dongLabel | uri_escape }}%20동물병원">🗺️ 카카오맵에서 {{ page.dongLabel }} 동물병원 검색</a>
+    <a class="hb-chip" href="https://map.naver.com/p/search/{{ page.dongLabel | uri_escape }}%20동물병원">🗺️ 네이버지도 검색</a>
+  </div>
+
+  <div class="ad-slot">
+    {% include ad.html %}
+  </div>
+
+  {% if page.truncated %}<p class="hb-sum">동물병원이 많아 이름순 상위 {{ page.items.size }}곳만 표시합니다.</p>{% endif %}
+  <ul class="hb-list">
+    {% for s in page.items %}<li><a href="/vet/{{ s.slug }}/"><b>{{ s.name }}</b><small>{% if s.note != "" %}{{ s.note }} · {% endif %}{% if s.tel != "" %}📞 {{ s.tel }} · {% endif %}{{ s.addr }}</small></a></li>
+    {% endfor %}
+  </ul>
+
+  {% if page.near.size > 0 %}
+  <h2 class="hb-h2">{{ page.sigungu }} 다른 동네 동물병원</h2>
+  <div class="hb-chips">
+    {% for n in page.near %}<a class="hb-chip" href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/{{ n.name | uri_escape }}/">{{ n.label }}<em>{{ n.count }}</em></a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if page.prevDong %}
+  <div class="hb-nav">
+    <a href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/{{ page.prevDong | uri_escape }}/">← {{ page.prevDong }}</a>
+    <a href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/{{ page.nextDong | uri_escape }}/">{{ page.nextDong }} →</a>
+  </div>
+  {% endif %}
+
+  {% if page.faq.size > 0 %}
+  <div class="hb-faq">
+    <h2 class="hb-h2">자주 묻는 질문</h2>
+    {% for f in page.faq %}<details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>
+    {% endfor %}
+  </div>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{% for f in page.faq %}{"@type":"Question","name":{{ f.q | jsonify }},"acceptedAnswer":{"@type":"Answer","text":{{ f.a | jsonify }}}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
+  {% endif %}
+
+  <div class="hb-box">
+    <h2>{{ page.dongLabel }} 동물병원 이용 전 확인하세요</h2>
+    <p>위 목록은 공공데이터에 등록된 곳입니다. 폐업·이전이 반영되기까지 시차가 있으니 방문 전에 전화로 확인하세요.</p>
+    <p style="margin-top:8px;"><a href="/region/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/">{{ page.sgLabel }} 동네별 동물병원 →</a>{% if page.dong != "기타" %} · <a href="https://wooatown.wooahouse.com/동네/{{ page.doShort | uri_escape }}/{{ page.sgSlug | uri_escape }}/{{ page.dong | uri_escape }}/">🏘️ {{ page.dongLabel }} 전체 생활정보 (우아동네) →</a>{% endif %}</p>
+  </div>
+
+</div>
+<aside class="tool-sidebar"></aside>
+</div>
